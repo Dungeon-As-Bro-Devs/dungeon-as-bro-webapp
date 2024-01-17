@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.background-image {
+  background-image: url('https://placeholder-cover-image.s3.ap-southeast-2.amazonaws.com/placeholder_landing.png'); /* Replace with the actual path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
