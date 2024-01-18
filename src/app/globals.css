@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* import font files */
-@font-face {
-  font-family: 'BOOTERZ';
-  src: url('/fonts/BOOTERFZ.woff') format('woff2'),
-       url('/fonts/BOOTERFZ.woff2') format('woff');
-  /* Additional font properties like font-weight, font-style, etc. */
-}
-
 #test {
   font-family: 'BOOTERZ', sans-serif;
 }
