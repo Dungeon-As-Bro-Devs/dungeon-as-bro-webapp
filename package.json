@@ -9,14 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@material-ui/core": "^4.12.4",
+    "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@next/font": "^14.0.4",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-simple-animate": "^3.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
