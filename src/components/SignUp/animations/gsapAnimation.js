@@ -4,13 +4,19 @@ import {gsap} from 'gsap'
 export const gsapLandingAnimation = () => {
 
     gsap.fromTo(".signup-field", {
-        width: 0, left: "50%",  
+        width: 0, left: "50%",
     }, {
-       width: "100%", left: 0, duration: 1, delay: .6, stagger: .15, ease: "Power4.out", 
+       width: "100%", left: 0, duration: 1, delay: .6, stagger: .15, ease: "Power4.out",
     })
 
     gsap.fromTo(".signup-field-label-text", {
-        opacity: 0, 
+        opacity: 0,
+    } , {
+        opacity: 1, delay: .6, stagger: .15,  duration: .8, ease: "Power4.in",
+    })
+
+    gsap.fromTo(".sign-up-right", {
+        opacity: 0,
     } , {
         opacity: 1, delay: .6, stagger: .15,  duration: .8, ease: "Power4.in",
     })
