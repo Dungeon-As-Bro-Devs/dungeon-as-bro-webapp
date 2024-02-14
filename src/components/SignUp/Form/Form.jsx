@@ -3,38 +3,77 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {motion, AnimatePresence} from 'framer-motion'
 import { errorSignProps, errorParagraphProps } from '../animations/animationProps';
+import { Grid, IconButton } from '@mui/material';
+import {
+    Facebook,
+    Twitter,
+    Instagram,
+    LinkedIn,
+    YouTube,
+} from '@mui/icons-material';
 import './Form.css'
+
 
 const formFields = [
     {
-        labelText : "First Name", 
-        name : "first-name", 
+        labelText : "First Name",
+        name : "first-name",
         type: "text",
         register: "firstName"
-    }, 
+    },
     {
-        labelText : "Last Name", 
-        name : "last-name", 
+        labelText : "Last Name",
+        name : "last-name",
         type: "text",
         register: "lastName"
-    }, 
+    },
     {
-        labelText : "Email", 
-        name : "email", 
+        labelText : "Email",
+        name : "email",
         type: "text",
         register: "email"
-    }, 
-    {
-        labelText : "Password", 
-        name : "password", 
-        type: "password",
-        register: "password"
-    }, 
+    },
 ]
 
-const Form = ({setIsOpen, setName, setOpenToS}) => {
-    
-    
+/**
+ * Functional component that displays a grid of social media icons.
+ * @returns
+ */
+function SocialMediaGrid() {
+   return (
+     <Grid container spacing={2}>
+       <Grid item>
+         <IconButton aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100092327695529">
+           <Facebook />
+         </IconButton>
+       </Grid>
+       <Grid item>
+         <IconButton aria-label="Twitter">
+           <Twitter />
+         </IconButton>
+       </Grid>
+       <Grid item>
+         <IconButton aria-label="Instagram" href="https://www.instagram.com/dungeonas_bro/">
+           <Instagram />
+         </IconButton>
+       </Grid>
+       <Grid item>
+         <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/company/dungeon-as-bro/about/">
+           <LinkedIn />
+         </IconButton>
+       </Grid>
+       <Grid item>
+         <IconButton aria-label="YouTube">
+           <YouTube />
+         </IconButton>
+       </Grid>
+     </Grid>
+   );
+ }
+
+export default function Form({setIsOpen, setName, setOpenToS}) {
+
+    // define schema for parsing and validating form inputs
     const schema = yup.object().shape({
         firstName: yup.string().required("First Name cannot be empty"),
         lastName: yup.string().required("Last Name cannot be empty"),
@@ -42,13 +81,8 @@ const Form = ({setIsOpen, setName, setOpenToS}) => {
             .string()
             .email("Looks like this is not an email")
             .required("Email cannot be empty"),
-        password: yup
-            .string()
-            .min(4, "Password must be at least 4 characters long")
-            .max(20, "Password cannot be longer than 20 characters")
-            .required("Password cannot be empty"),
     })
-    
+
     const {register, handleSubmit, formState: {errors} , reset } = useForm({
         resolver: yupResolver(schema)
     });
@@ -61,7 +95,6 @@ const Form = ({setIsOpen, setName, setOpenToS}) => {
             firstName: "",
             lastName: "",
             email: "",
-            password: "",
         })
     }
 
@@ -70,47 +103,45 @@ const Form = ({setIsOpen, setName, setOpenToS}) => {
 
             {formFields.map((field)=> (
                 <>
-                <div className="signup-field">
-                <input 
-                    type={field.type} 
-                    id={field.name} 
-                    aria-invalid={errors[field.register] ? "true" :  "false"} 
-                    aria-describedby={field.register}
-                    name={field.name} 
-                    placeholder={field.labelText} 
-                    autoComplete="off"
-                    defaultValue=""
-                    {...register(`${field.register}`)}/>
-                <label for="first-name" className="signup-field-label-wrapper">
-                    <span className="signup-field-label-text">
-                        {field.labelText}
-                    </span>
-                </label>
-                <AnimatePresence>
-                    {errors[field.register] && 
-                    <motion.div {...errorSignProps}
-                    className="signup-error-sign">!</motion.div>
-                    }
-                </AnimatePresence>
-                </div>
-                
-                <AnimatePresence>
-                    {errors[field.register] &&
-                        <motion.div 
-                        {...errorParagraphProps}
-                        className="signup-error-container">
-                            <p className='signup-error-message'>
-                                <span role="alert">{errors[field.register].message}</span>
-                            </p>
-                        </motion.div>
-                        }
-                </AnimatePresence>
-                
+                    <div className="signup-field">
+                        <input
+                            type={field.type}
+                            id={field.name}
+                            aria-invalid={errors[field.register] ? "true" :  "false"}
+                            aria-describedby={field.register}
+                            name={field.name}
+                            placeholder={field.labelText}
+                            autoComplete="off"
+                            defaultValue=""
+                            {...register(`${field.register}`)}
+                        />
+                        <label for="first-name" className="signup-field-label-wrapper">
+                            <span className="signup-field-label-text">
+                                {field.labelText}
+                            </span>
+                        </label>
+                        <AnimatePresence>
+                            {errors[field.register] &&
+                            <motion.div {...errorSignProps}
+                            className="signup-error-sign">!</motion.div>
+                            }
+                        </AnimatePresence>
+                    </div>
+                    <AnimatePresence>
+                        {errors[field.register] &&
+                            <motion.div
+                            {...errorParagraphProps}
+                            className="signup-error-container">
+                                <p className='signup-error-message'>
+                                    <span role="alert">{errors[field.register].message}</span>
+                                </p>
+                            </motion.div>
+                            }
+                    </AnimatePresence>
                 </>
-            ))} 
-            <input type="submit" value="Claim your free trial" />
+            ))}
+            <input type="submit" value="Sign Up Now!"/>
+            <SocialMediaGrid/>
         </form>
-    )
+    );
 }
-
-export default Form

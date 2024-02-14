@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Landing from '@/layouts/Landing';
-import TitleCard from '@/components/TitleCard';
 import SignInSide from '@/components/SignInSide';
 import SignUp from '@/components/SignUp/SignUp';
 
