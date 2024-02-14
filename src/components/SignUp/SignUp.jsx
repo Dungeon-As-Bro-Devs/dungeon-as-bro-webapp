@@ -8,8 +8,8 @@ import theme from '@/theme';
 import { gsapLandingAnimation } from './animations/gsapAnimation'
 import { ThemeProvider, Typography, CssBaseline } from '@mui/material';
 import { Animate, AnimateGroup, useAnimate }  from 'react-simple-animate';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+
 
 const termsOfService = [
     {
@@ -48,36 +48,10 @@ function TitleCard(props) {
             >
                 <Typography className='shine' variant='h1'>{props.titleText}</Typography>
             </Animate>
-            <Box
-                sx={{ mx: 'auto' }}
-                component={'img'}
-                src="https://placeholder-cover-image.s3.ap-southeast-2.amazonaws.com/Insignia-black.png"
-                height={.25}
-                width={.25}
-              />
         </ThemeProvider>
 
     );
 }
-
-/**
- *
- * @param {*} props
- * @returns
- */
-function Copyright(props) {
-
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-          Dungeon As Bro Ltd.
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
 
 // TODO: MODAL animation damn bug fix (partly done - still need exit animation on close)
 // TODO: word animation bug fix (fixed)
@@ -133,6 +107,13 @@ export default function SignUp() {
                     <p className='signup-form-terms' id="terms">By clicking the button you agree our&nbsp;
                     <button aria-labelledby="terms" onClick={()=> setOpenToS(true)}>terms and services</button>
                     </p>
+                    <Box
+                        sx={{ mx: 'auto', my: 2, color: 'white' }}
+                        component={'img'}
+                        src="https://placeholder-cover-image.s3.ap-southeast-2.amazonaws.com/Insignia-black.png"
+                        height={.2}
+                        width={.2}
+                    />
                 </div>
             </main>
             <Modal isOpen={isOpen} name={name} setIsOpen={setIsOpen}>
