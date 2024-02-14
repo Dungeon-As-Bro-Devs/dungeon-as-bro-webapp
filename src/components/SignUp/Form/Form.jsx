@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {motion, AnimatePresence} from 'framer-motion'
-import { errorSignProps, errorParagraphProps } from '../animations/animationProps';
+import { errorSignProps, errorParagraphProps } from '../../../animations/animationProps';
 import { Grid, IconButton } from '@mui/material';
 import {
     Facebook,
@@ -151,7 +151,7 @@ export default function Form({setIsOpen, setName, setOpenToS}) {
                             defaultValue=""
                             {...register(`${field.register}`)}
                         />
-                        <label for="first-name" className="signup-field-label-wrapper">
+                        <label htmlFor="first-name" className="signup-field-label-wrapper">
                             <span className="signup-field-label-text">
                                 {field.labelText}
                             </span>
