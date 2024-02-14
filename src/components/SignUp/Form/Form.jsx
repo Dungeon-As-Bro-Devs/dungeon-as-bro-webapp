@@ -14,6 +14,9 @@ import {
     YouTube,
 } from '@mui/icons-material';
 import './Form.css'
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 
 
 const formFields = [
@@ -37,6 +40,26 @@ const formFields = [
     },
 ]
 
+
+/**
+ *
+ * @param {*} props
+ * @returns
+ */
+function Copyright(props) {
+
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Dungeon As Bro Ltd.
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 /**
  * Functional component that displays a grid of social media icons.
  * @returns
@@ -46,27 +69,27 @@ function SocialMediaGrid() {
      <Grid container spacing={2}>
        <Grid item>
          <IconButton aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100092327695529">
-           <Facebook />
+           <Facebook sx={{color: 'white'}}/>
          </IconButton>
        </Grid>
        <Grid item>
          <IconButton aria-label="Twitter">
-           <Twitter />
+           <Twitter sx={{color: 'white'}}/>
          </IconButton>
        </Grid>
        <Grid item>
          <IconButton aria-label="Instagram" href="https://www.instagram.com/dungeonas_bro/">
-           <Instagram />
+           <Instagram sx={{color: 'white'}}/>
          </IconButton>
        </Grid>
        <Grid item>
          <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/company/dungeon-as-bro/about/">
-           <LinkedIn />
+           <LinkedIn sx={{color: 'white'}}/>
          </IconButton>
        </Grid>
        <Grid item>
          <IconButton aria-label="YouTube">
-           <YouTube />
+           <YouTube sx={{color: 'white'}}/>
          </IconButton>
        </Grid>
      </Grid>
