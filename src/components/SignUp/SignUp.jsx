@@ -6,9 +6,22 @@ import './SignUp.css'
 import theme from '@/theme';
 // import { animateWordChange } from './animations/animateWords'
 import { gsapLandingAnimation } from './animations/gsapAnimation'
-import {termsOfService} from './ToS.js'
 import { ThemeProvider, Typography, CssBaseline } from '@mui/material';
 import { Animate, AnimateGroup, useAnimate }  from 'react-simple-animate';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+
+const termsOfService = [
+    {
+        termKey: "term-1",
+        termText:  "1) We grant you a limited, non-exclusive, non-transferable license to access and use our website for personal and non-commercial purposes. You may not use our site for any illegal or unauthorized purpose."
+    },
+    {
+        termKey: "term-1",
+        termText: "2) We reserve the right to terminate or suspend your access to our site at any time, without notice and for any reason. We may also modify or discontinue our services at any time without liability to you."
+    },
+
+];
 
 /**
  * Display a header text that spans the entire screen
@@ -24,7 +37,6 @@ function TitleCard(props) {
         end: { opacity: 1 }
       });
 
-
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -36,11 +48,52 @@ function TitleCard(props) {
             >
                 <Typography className='shine' variant='h1'>{props.titleText}</Typography>
             </Animate>
+            <Box
+                sx={{ mx: 'auto' }}
+                component={'img'}
+                src="https://placeholder-cover-image.s3.ap-southeast-2.amazonaws.com/Insignia-black.png"
+                height={.25}
+                width={.25}
+              />
         </ThemeProvider>
+
     );
 }
 
+/**
+ *
+ * @param {*} props
+ * @returns
+ */
+function Copyright(props) {
 
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://mui.com/">
+          Dungeon As Bro Ltd.
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
+// TODO: MODAL animation damn bug fix (partly done - still need exit animation on close)
+// TODO: word animation bug fix (fixed)
+// TODO: responsive done
+// TODO: accessibility check dooone
+// TODO: landing animation with gsap done
+// TODO: design tweaks done
+// TODO: convert px to rems with calc done
+// TODO: fix bg positioning
+
+/**
+ *
+
+ *
+ * @returns
+ */
 export default function SignUp() {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -89,9 +142,9 @@ export default function SignUp() {
             <Modal isOpen={openToS} setIsOpen={setOpenToS}>
                 <h3>Terms of Services</h3>
                     <p>
-                        These terms and conditions ("Terms") govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms.
+                        These terms and conditions (&ldquo;Terms&rdquo;) govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms.
                     </p>
-                    <ul>{termsOfService.map(term=><li><p>{term}</p></li>)}</ul>
+                    <ul>{termsOfService.map(term=><li key={term.termKey}><p>{term.termText}</p></li>)}</ul>
                     <p>
                         If you have any questions or concerns about these Terms, please contact us at <span style={{textDecoration:'underline'}}>support@mastertodesigncode.com. </span>
                     </p>
