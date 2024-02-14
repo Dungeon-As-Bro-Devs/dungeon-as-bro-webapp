@@ -5,7 +5,7 @@ import Modal from './Modal/Modal'
 import './SignUp.css'
 import theme from '@/theme';
 // import { animateWordChange } from './animations/animateWords'
-import { gsapLandingAnimation } from './animations/gsapAnimation'
+import { gsapLandingAnimation } from '../../animations/gsapAnimation'
 import { ThemeProvider, Typography, CssBaseline } from '@mui/material';
 import { Animate, AnimateGroup, useAnimate }  from 'react-simple-animate';
 import Box from '@mui/material/Box';
