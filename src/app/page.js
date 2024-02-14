@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Landing from '@/layouts/Landing';
-import SignInSide from '@/components/SignInSide';
 import SignUp from '@/components/SignUp/SignUp';
 
 export default function Home() {
