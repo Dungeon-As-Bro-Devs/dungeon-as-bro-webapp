@@ -1,3 +1,5 @@
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -72,6 +74,18 @@ function SocialMediaGrid() {
  }
 
 export default function Form({setIsOpen, setName, setOpenToS}) {
+    const form = useRef();
+
+    const sendEmail = (e) => {
+      e.preventDefault();
+
+      emailjs.sendForm(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, form.current, process.env.EMAILJS_PUBLIC_KEY)
+        .then((result) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+    }
 
     // define schema for parsing and validating form inputs
     const schema = yup.object().shape({
@@ -81,12 +95,11 @@ export default function Form({setIsOpen, setName, setOpenToS}) {
             .string()
             .email("Looks like this is not an email")
             .required("Email cannot be empty"),
-    })
+    });
 
     const {register, handleSubmit, formState: {errors} , reset } = useForm({
         resolver: yupResolver(schema)
     });
-
 
     const onSubmit = (data) => {
         setName(data.firstName)
@@ -95,14 +108,14 @@ export default function Form({setIsOpen, setName, setOpenToS}) {
             firstName: "",
             lastName: "",
             email: "",
-        })
+        });
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='signup-form'>
 
             {formFields.map((field)=> (
-                <>
+                <div key={field.name}>
                     <div className="signup-field">
                         <input
                             type={field.type}
@@ -129,16 +142,17 @@ export default function Form({setIsOpen, setName, setOpenToS}) {
                     </div>
                     <AnimatePresence>
                         {errors[field.register] &&
-                            <motion.div
+                          <motion.div
                             {...errorParagraphProps}
-                            className="signup-error-container">
-                                <p className='signup-error-message'>
-                                    <span role="alert">{errors[field.register].message}</span>
-                                </p>
-                            </motion.div>
-                            }
+                            className="signup-error-container"
+                          >
+                            <p className='signup-error-message'>
+                              <span role="alert">{errors[field.register].message}</span>
+                            </p>
+                          </motion.div>
+                        }
                     </AnimatePresence>
-                </>
+                </div>
             ))}
             <input type="submit" value="Sign Up Now!"/>
             <SocialMediaGrid/>
